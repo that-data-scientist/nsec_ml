@@ -18,12 +18,16 @@ def generate_fake_data():
     for index in range((end_date - start_date).days):
         date = start_date + datetime.timedelta(days=index)
         day_of_week = date.weekday()  # Monday is 0, Sunday is 6
-        is_public_holiday = bool(random.choices([True, False], weights=[5, 95], k=1)[0])
-        is_semester = bool(random.choices([True, False], weights=[5, 95], k=1)[0])
+        is_public_holiday = random.choices(
+            [True, False, np.NaN], weights=[5, 90, 5], k=1
+        )[0]
+        is_semester = random.choices(
+            [True, False, np.NaN], weights=[5, 90, 5], k=1
+        )[0]
         train_traffic = math.ceil(random.uniform(20, 40))
 
-        waiting_time = int(train_traffic / 2) + int(np.random.normal(loc=10, scale=10))
-        waiting_time = max(5, waiting_time)
+        waiting_time = int(train_traffic / 2) + int(np.random.normal(loc=10, scale=30))
+        waiting_time = max(-5, waiting_time)
         waiting_time = min(35, waiting_time)
 
         if day_of_week in [5, 6] or is_public_holiday:

@@ -11,7 +11,7 @@ from src.config.constants import PATH_TO_INPUT_DIR
 def generate_fake_data():
     random.seed(42)
     end_date = datetime.date.today()
-    start_date = end_date - datetime.timedelta(days=90)
+    start_date = end_date - datetime.timedelta(days=180)
 
     data = []
 
